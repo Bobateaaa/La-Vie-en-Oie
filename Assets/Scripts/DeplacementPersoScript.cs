@@ -4,40 +4,33 @@ using UnityEngine;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
-    public float vitesseDeplacementPerso; // vitesse de déplacement du personnage
-    public float vitesseRotationPerso; // vitesse de rotation du personnage lorsque la souris se déplace horizontalement
+    public float vitesseDeplacementPerso = 5f; // Movement speed
+    public float vitesseRotationPerso = 100f; // Rotation speed
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.useGravity = true; // Ensure gravity is enabled
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; // Freeze rotation on X and Z axes
     }
 
     void FixedUpdate()
     {
-        // Get input for movement and rotation
-        float axeH = Input.GetAxisRaw("Horizontal");
-        float axeV = Input.GetAxisRaw("Vertical");
+        // Get input for movement
+        float axeH = Input.GetAxis("Horizontal");
+        float axeV = Input.GetAxis("Vertical");
 
-        // Calculate movement
-        Vector3 deplacement = new Vector3(axeH, 0f, axeV).normalized;
-        rb.AddRelativeForce(deplacement * vitesseDeplacementPerso * Time.deltaTime, ForceMode.VelocityChange);
+        // Calculate movement direction
+        Vector3 movement = new Vector3(axeH, 0f, axeV).normalized * vitesseDeplacementPerso * Time.deltaTime;
 
-        // Define a constant rotation speed
-        float constantRotationSpeed = 30f; // Adjust this value as needed
+        // Apply movement
+        rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
         // Get mouse input for rotation
         float sourisX = Input.GetAxis("Mouse X") * vitesseRotationPerso * Time.deltaTime;
 
-        // Check if there is mouse movement
-        if (sourisX != 0)
-        {
-            // Combine mouse input with constant rotation speed
-            float totalRotation = sourisX + (constantRotationSpeed * Time.deltaTime);
-
-            // Apply rotation
-            transform.Rotate(0f, totalRotation, 0f);
-        }
+        // Apply rotation
+        transform.Rotate(0f, sourisX, 0f);
     }
 }
