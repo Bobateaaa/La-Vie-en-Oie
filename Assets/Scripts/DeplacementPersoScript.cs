@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
-    public float vitesseDeplacementPerso = 5f; // Movement speed
-    public float vitesseRotationPerso = 100f; // Rotation speed
+    public float vitesseDeplacement = 4f; // Movement speed
+    public float vitesseRotation = 100f; // Rotation speed
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; // Freeze rotation on X and Z axes
     }
@@ -22,15 +23,12 @@ public class DeplacementPersoScript : MonoBehaviour
         float axeV = Input.GetAxis("Vertical");
 
         // Calculate movement direction
-        Vector3 movement = new Vector3(axeH, 0f, axeV).normalized * vitesseDeplacementPerso * Time.deltaTime;
+        Vector3 movement = new Vector3(axeH, 0f, axeV).normalized * vitesseDeplacement * Time.deltaTime;
 
         // Apply movement
         rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
-        // Get mouse input for rotation
-        float sourisX = Input.GetAxis("Mouse X") * vitesseRotationPerso * Time.deltaTime;
+        transform.Rotate(0, axeH * vitesseRotation * Time.deltaTime, 0);
 
-        // Apply rotation
-        transform.Rotate(0f, sourisX, 0f);
     }
 }
