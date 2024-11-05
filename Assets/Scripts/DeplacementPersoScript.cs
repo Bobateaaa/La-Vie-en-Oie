@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Fonctionnement et utilité générale du script
+    Gestion du déplacement du personnage
+
+   Par : Matilda
+   Dernière modification : 01/11/2024
+*/
+
+
 public class DeplacementPersoScript : MonoBehaviour
 {
-    public float vitesseDeplacement = 4f; // Movement speed
-    public float vitesseRotation = 100f; // Rotation speed
-    private Rigidbody rb;
+    //Déclaration des variables (publiques, privées et statiques)
+    public float vitesseDeplacement = 4f; // vitesse de déplacement
+    public float vitesseRotation = 100f; // vitesse de rotation
+    private Rigidbody rb; // rigidbody du personnage
 
     void Start()
     {

@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Fonctionnement et utilité générale du script
+   Gestion des animations du personnage 
+
+   Par : Matilda
+   Dernière modification : 02/11/2024
+*/
+
+
 public class AnimationPerso : MonoBehaviour
 {
-    public Animator anim;
+    //Déclaration des variables (publiques, privées et statiques)
+    public Animator anim; // animator du personnage
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         anim.SetFloat("vitesseVerticale", Input.GetAxis("Vertical"));
