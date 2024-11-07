@@ -33,22 +33,22 @@ public class GestionCamera : MonoBehaviour
     // Gérer les caméras en fonction des touches du clavier
     void Update()
     {
-        // Si la touche 1 est enfoncée, activer la caméra FPS
+        // Si la touche 1 est enfoncée, activer la caméra arrière
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ActiverCamera(cameraArriere);
         }
-        // Si la touche 2 est enfoncée, activer la caméra 3e personne
+        // Si la touche 2 est enfoncée, activer la caméra avant
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ActiverCamera(cameraAvant);
         }
-        // Si la touche 3 est enfoncée, activer la caméra distance fixe
+        // Si la touche 3 est enfoncée, activer la caméra de vision
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ActiverCamera(cameraVision);
         }
-        // Si la touche 4 est enfoncée, activer la caméra de surveillance
+        // Si la touche 4 est enfoncée, activer la caméra en haut
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ActiverCamera(cameraHaut);
