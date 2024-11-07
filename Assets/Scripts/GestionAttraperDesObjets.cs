@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* Fonctionnement et utilité générale du script
-    Gestion du déplacement du personnage
+    Gestion pour que le joueuer puisse attraper des objets
     https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html
 
    Par : Matilda
-   Dernière modification : 01/11/2024
+   Dernière modification : 06/11/2024
 */
 
 public class GestionAttraperDesObjets : MonoBehaviour
@@ -17,7 +17,7 @@ public class GestionAttraperDesObjets : MonoBehaviour
     public float vitesse; // vitesse à laquelle l'objet suit le joueur
     public Vector3 offset; // distance entre l'objet et le joueur
     public bool peuEtreAttraper; // si l'objet peut être attrapé du script GestionCollisions
-    private bool bougeVersCible; //indique si l'objet doit bouger vers la cible
+    public bool bougeVersCible; //indique si l'objet doit bouger vers la cible
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +34,21 @@ public class GestionAttraperDesObjets : MonoBehaviour
         if (peuEtreAttraper == true && Input.GetKeyDown(KeyCode.P))
         {
             bougeVersCible = true;
-            Invoke("ResetPeuAttraper", 2f);
             
+        } else if (bougeVersCible == true && Input.GetKeyDown(KeyCode.X))
+        {
+            BougerVersCible();
+            bougeVersCible = false;
+            Invoke("ResetAttraper", 1f);
         }
 
+        
 
         // Si l'objet peut être attrapé
         if (bougeVersCible == true)
         {
-            BougerVersCible();
+            BougerVersCible(); 
+            peuEtreAttraper = false;
         }
 
 
@@ -69,13 +75,18 @@ public class GestionAttraperDesObjets : MonoBehaviour
 
     void BougerVersCible()
     {
+        if(bougeVersCible == true)
+        {
+        peuEtreAttraper = false;
+
         Vector3 positionCible = cibleJoueur.transform.position + offset;
 
         // L'objet suit le joueur
         objetAAttraper.transform.position = Vector3.MoveTowards(objetAAttraper.transform.position, positionCible, vitesse * Time.deltaTime);
+        }	
     }
 
-    void ResetPeuAttraper()
+    void ResetAttraper()
     {
         peuEtreAttraper = false;
     }

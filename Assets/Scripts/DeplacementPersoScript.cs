@@ -23,7 +23,7 @@ public class DeplacementPersoScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; // Freeze rotation on X and Z axes
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; 
     }
 
     void FixedUpdate()
@@ -32,10 +32,8 @@ public class DeplacementPersoScript : MonoBehaviour
         float axeH = Input.GetAxis("Horizontal");
         float axeV = Input.GetAxis("Vertical");
 
-        // Calculate movement direction
         Vector3 movement = new Vector3(axeH, 0f, axeV).normalized * vitesseDeplacement * Time.deltaTime;
 
-        // Apply movement
         rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
         transform.Rotate(0, axeH * vitesseRotation * Time.deltaTime, 0);
