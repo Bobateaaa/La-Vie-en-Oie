@@ -18,9 +18,11 @@ public class GestionAttraperDesObjets : MonoBehaviour
     public Vector3 offset; // distance entre l'objet et le joueur
     public bool peuEtreAttraper; // si l'objet peut être attrapé du script GestionCollisions
     public bool bougeVersCible; //indique si l'objet doit bouger vers la cible
+    public Rigidbody rb; // rigidbody de l'objet à attraper
     // Start is called before the first frame update
     void Start()
     {
+        rb = objetAAttraper.GetComponent<Rigidbody>();
         offset = new Vector3(-2, 2, -2);
         peuEtreAttraper = false;
         bougeVersCible = false;
@@ -34,11 +36,13 @@ public class GestionAttraperDesObjets : MonoBehaviour
         if (peuEtreAttraper == true && Input.GetKeyDown(KeyCode.P))
         {
             bougeVersCible = true;
+            rb.isKinematic = true;
             
         } else if (bougeVersCible == true && Input.GetKeyDown(KeyCode.X))
         {
             BougerVersCible();
             bougeVersCible = false;
+            rb.isKinematic = false;
             Invoke("ResetAttraper", 1f);
         }
 

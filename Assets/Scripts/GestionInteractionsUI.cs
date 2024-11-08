@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Fonctionnement et utilité générale du script
+   Gestion avec objet et ui pour attraper un objet et le faire tomber
+
+   Par : Matilda
+   Dernière modification : 04/11/2024
+*/
+
 public class GestionInteractionsUI : MonoBehaviour
 {
     public GameObject objetAAttraper; // objet à attraper

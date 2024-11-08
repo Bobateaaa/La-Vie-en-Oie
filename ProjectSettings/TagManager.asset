@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObjetAttrapable
+  - Bouton
   layers:
   - Default
   - TransparentFX

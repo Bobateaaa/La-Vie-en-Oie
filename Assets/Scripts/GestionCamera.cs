@@ -18,21 +18,32 @@ public class GestionCamera : MonoBehaviour
     public GameObject cameraAvant; // camera en avant du personnage
     public GameObject cameraHaut; // camera en haut du personnage
     public GameObject cameraVision; // camera qui représente la vision du personnage
-   
+    public GameObject cameraVehicule; // camera active
+
+    public GameObject vehicule; //
+    
+    private GererInteractionVehicule scriptVehicule; // script pour gérer les interactions avec le véhicule
+   private bool peutEntrerVehicule; // si le personnage peut entrer dans le véhicule
+    private bool estAssis; // si le personnage est assis dans le véhicule
 
     // Activer une caméra au démarrage du jeu 
     void Start()
     {
+        scriptVehicule = vehicule.GetComponent<GererInteractionVehicule>();
         cameraArriere.SetActive(true);
         cameraAvant.SetActive(false);
         cameraHaut.SetActive(false);
         cameraVision.SetActive(false);
+        cameraVehicule.SetActive(false);
         
     }
 
     // Gérer les caméras en fonction des touches du clavier
     void Update()
     {
+        peutEntrerVehicule = scriptVehicule.peutEntrer;
+        estAssis = scriptVehicule.estAssis;
+
         // Si la touche 1 est enfoncée, activer la caméra arrière
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -52,6 +63,10 @@ public class GestionCamera : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ActiverCamera(cameraHaut);
+        }  
+        else if (peutEntrerVehicule == true && estAssis == true)
+        {
+            ActiverCamera(cameraVehicule);
         }
         
     }
@@ -63,6 +78,7 @@ public class GestionCamera : MonoBehaviour
         cameraAvant.SetActive(false);
         cameraHaut.SetActive(false);
         cameraVision.SetActive(false);
+        cameraVehicule.SetActive(false);
 
         // Activer la caméra spécifiée
         cameraChoisi.SetActive(true);
