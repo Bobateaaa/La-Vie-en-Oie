@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+    /* Fonctionnement et utilité générale du script
+    Script pour faire les UI regarder dans la direction de la caméra qui est active
+    
+
+   Par : Matilda
+   Dernière modification : 08/11/2024
+   */
+
 public class DirectionUI : MonoBehaviour
 {
     public GameObject UIObjet; // 
@@ -9,7 +17,9 @@ public class DirectionUI : MonoBehaviour
     public GameObject cameraAvant; // camera en avant du personnage
     public GameObject cameraHaut; // camera en haut du personnage
     public GameObject cameraVision; // camera qui représente la vision du personnage
-     private GameObject activeCamera; // Currently active camera
+    public GameObject cameraVehicule; // camera lorsque le joueur est dans le vehicule
+    private GameObject activeCamera; // camera qui est active dans la scene
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +44,10 @@ public class DirectionUI : MonoBehaviour
         else if (cameraVision.activeSelf)
         {
             activeCamera = cameraVision;
+        } 
+        else if (cameraVehicule.activeSelf)
+        {
+            activeCamera = cameraVehicule;
         }
 
 

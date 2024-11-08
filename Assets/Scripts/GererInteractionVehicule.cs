@@ -6,6 +6,8 @@ public class GererInteractionVehicule : MonoBehaviour
 {
     public GameObject vehicule; // le vehicule
     public GameObject joueur; // le joueur
+    public GameObject UIEntrer; // ui pour descendre le tracteur
+    public GameObject UIDescendre; // ui pour descendre le tracteur
     public Transform positionVehiculePourAssir; // position du vehicule
     public Transform positionJoueurPourDescendre; // position du joueur
     public bool peutEntrer; // si le joueur peut entrer dans le vehicule
@@ -15,7 +17,8 @@ public class GererInteractionVehicule : MonoBehaviour
     {
         peutEntrer = false;
         estAssis = false;
-        
+        UIEntrer.SetActive(false);
+        UIDescendre.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,11 +29,15 @@ public class GererInteractionVehicule : MonoBehaviour
             joueur.transform.position = positionVehiculePourAssir.position;
             joueur.transform.rotation = positionVehiculePourAssir.rotation;
             estAssis = true;
+            UIEntrer.SetActive(false);
+            UIDescendre.SetActive(true);
+            
 
         } else if (peutEntrer == true && estAssis == true && Input.GetKeyDown(KeyCode.X))
         {
             estAssis = false;
             joueur.transform.position = positionJoueurPourDescendre.position;
+            UIDescendre.SetActive(false);
         }
         
     }
@@ -40,6 +47,7 @@ public class GererInteractionVehicule : MonoBehaviour
         if (triggerTrue.gameObject.name == "HitboxGoose")
         {
             peutEntrer = true;
+            UIEntrer.SetActive(true);
         }
     }
 

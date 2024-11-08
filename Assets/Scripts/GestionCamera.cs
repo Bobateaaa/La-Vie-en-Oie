@@ -23,7 +23,7 @@ public class GestionCamera : MonoBehaviour
     public GameObject vehicule; //
     
     private GererInteractionVehicule scriptVehicule; // script pour gérer les interactions avec le véhicule
-   private bool peutEntrerVehicule; // si le personnage peut entrer dans le véhicule
+    private bool peutEntrerVehicule; // si le personnage peut entrer dans le véhicule
     private bool estAssis; // si le personnage est assis dans le véhicule
 
     // Activer une caméra au démarrage du jeu 
@@ -41,7 +41,6 @@ public class GestionCamera : MonoBehaviour
     // Gérer les caméras en fonction des touches du clavier
     void Update()
     {
-        peutEntrerVehicule = scriptVehicule.peutEntrer;
         estAssis = scriptVehicule.estAssis;
 
         // Si la touche 1 est enfoncée, activer la caméra arrière
@@ -64,7 +63,7 @@ public class GestionCamera : MonoBehaviour
         {
             ActiverCamera(cameraHaut);
         }  
-        else if (peutEntrerVehicule == true && estAssis == true)
+        else if (estAssis == true)
         {
             ActiverCamera(cameraVehicule);
         }
