@@ -66,6 +66,11 @@ public class GestionCamera : MonoBehaviour
         else if (estAssis == true)
         {
             ActiverCamera(cameraVehicule);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && estAssis == false)
+        {
+            ActiverCamera(cameraVision);
         }
         
     }

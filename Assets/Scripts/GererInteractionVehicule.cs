@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Fonctionnement et utilité générale du script
+   Gérer les interactions avec le tracteur et le joueur + les UI
+
+   Par : Matilda
+   Dernière modification : 07/11/2024
+*/
+
 public class GererInteractionVehicule : MonoBehaviour
 {
     public GameObject vehicule; // le vehicule

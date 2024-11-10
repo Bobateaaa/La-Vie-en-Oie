@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,11 +32,13 @@ public class DeplacementPersoScript : MonoBehaviour
         float axeH = Input.GetAxis("Horizontal");
         float axeV = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(axeH, 0f, axeV).normalized * vitesseDeplacement * Time.deltaTime;
+        Vector3 deplacement = Vector3.forward * axeV * vitesseDeplacement * Time.fixedDeltaTime;
+        transform.Translate(deplacement);
+        
+        Vector3 rotation = Vector3.up * axeH * vitesseRotation * Time.fixedDeltaTime;
+        transform.Rotate(rotation);
 
-        rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
-        transform.Rotate(0, axeH * vitesseRotation * Time.deltaTime, 0);
 
     }
 }

@@ -16,12 +16,13 @@ public class GestionInteractionsUI : MonoBehaviour
     public bool bougeVersCible; //indique si l'objet bouge vers la cible
     public GameObject UIActiver; // ui/bouton pour attraper l'objet
     public GameObject UIDesactiver; // ui/bouton pour faire tomber l'objet
+    public GameObject UIVerserEssence; // ui/bouton pour verser de l'essence
     private GestionAttraperDesObjets scriptAttraperObjet; // script pour attraper des objets
     // Start is called before the first frame update
+    
     void Start()
     {
         scriptAttraperObjet = objetAAttraper.GetComponent<GestionAttraperDesObjets>();
-        
     }
 
     // Update is called once per frame
@@ -43,10 +44,12 @@ public class GestionInteractionsUI : MonoBehaviour
         if (peuAttraper == false && bougeVersCible == true)
         {
             UIDesactiver.SetActive(true);
+            UIVerserEssence.SetActive(true);
         }
         else
         {
             UIDesactiver.SetActive(false);
+            UIVerserEssence.SetActive(false);
         }
 
         
